@@ -44,10 +44,9 @@ public class ViewPagerFragment extends Fragment {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int PgNo = mPageNumber+1;
                 if (toast != null)
                     toast.cancel();
-                toast=Toast.makeText(getContext(),"The Advertisement number is: " + PgNo,Toast.LENGTH_LONG);
+                toast=Toast.makeText(getContext(),"The Advertisement number is: " + mPageNumber,Toast.LENGTH_LONG);
                 toast.show();
             }
         });
