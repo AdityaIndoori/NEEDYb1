@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity
             toast.cancel();
         if (viewCode == 0 || viewCode == 1 || viewCode == 2)
         {
-            toast=Toast.makeText(getApplicationContext(),"The item number clicked is: " + clickedItemIndex,Toast.LENGTH_LONG);
+            toast=Toast.makeText(getApplicationContext(),"The Grid number clicked is: " + clickedItemIndex,Toast.LENGTH_LONG);
             toast.show();
         }
     }
