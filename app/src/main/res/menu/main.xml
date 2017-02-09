@@ -8,7 +8,7 @@
         android:orderInCategory="100"
         app:showAsAction="always" />
 
-    <item android:id="@+id/action_settings"
+    <item android:id="@+id/action_admin"
         android:icon="@drawable/administrator"
         android:title="admin"
         android:orderInCategory="100"
