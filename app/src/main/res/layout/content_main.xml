@@ -10,31 +10,20 @@
     tools:showIn="@layout/app_bar_main"
     tools:context="com.example.aditya.menuview.MainActivity">
 
-    <android.support.v4.view.ViewPager
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginLeft="4dp"
-        android:id="@+id/viewpager"
-        android:layout_alignParentTop="true"
-        ></android.support.v4.view.ViewPager>
-    <me.relex.circleindicator.CircleIndicator
-        android:id="@+id/indicator"
+
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/viewpager"
-        android:layout_marginTop="130dp"
-        android:layout_alignEnd="@id/viewpager"
-        android:layout_alignRight="@id/viewpager"/>
+        android:id="@+id/GridRecyclerView"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="4dp"></android.support.v7.widget.RecyclerView>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:id="@+id/linearLayout"
-        android:layout_below="@id/viewpager"
-        android:layout_marginBottom="4dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp">
+        android:layout_above="@id/GridRecyclerView"
+        android:layout_margin="4dp">
         <Button
             android:layout_width="wrap_content"
             android:layout_height="35dp"
@@ -74,14 +63,19 @@
             android:layout_weight="1"
             android:layout_margin="2dp"/>
     </LinearLayout>
-    <android.support.v7.widget.RecyclerView
+    <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/GridRecyclerView"
-        android:layout_marginTop="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginLeft="4dp"
-        android:layout_below="@id/linearLayout"></android.support.v7.widget.RecyclerView>
-
+        android:layout_above="@id/linearLayout"
+        android:layout_margin="4dp"
+        android:id="@+id/viewpager"
+        android:layout_alignParentTop="true"
+        ></android.support.v4.view.ViewPager>
+    <me.relex.circleindicator.CircleIndicator
+        android:id="@+id/indicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_above="@id/linearLayout"/>
 
 </RelativeLayout>

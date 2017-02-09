@@ -15,7 +15,12 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Toast;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import me.relex.circleindicator.CircleIndicator;
 
@@ -23,7 +28,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GridRecyclerViewAdapter.ListItemClickListener, recyclerViewAdapter.ListItemClickListener {
 
     String[] GridSubHeading = {"H-Mart","Wheels On Rent","C-BayBee","Emergency"};
-    int[] GridIconImage = {R.drawable.hmart,R.drawable.wheelsonrent,R.drawable.cbaybee,R.drawable.emergency},HorizontaliconImage = {R.drawable.advertising,R.drawable.advertising2,R.drawable.advertising3,R.drawable.advertising4};
+    int[] GridIconImage = {R.drawable.hmart,R.drawable.wheelsonrent,R.drawable.cbaybee,R.drawable.emergency};
     private GridRecyclerViewAdapter GridRecyclerViewAdapter;
     private recyclerViewAdapter recyclerViewAdapter;
     private RecyclerView recyclerViewG;
@@ -32,6 +37,7 @@ public class MainActivity extends AppCompatActivity
     private static final int NUM_PAGES = 4;
     ViewPager viewPager;
     private PagerAdapter mPagerAdapter;
+    int currentPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +70,35 @@ public class MainActivity extends AppCompatActivity
         CircleIndicator indicator = (CircleIndicator) findViewById(R.id.indicator);
         viewPager.setAdapter(mPagerAdapter);
         indicator.setViewPager(viewPager);
+        final Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    boolean touchedViewPager;
+                    @Override
+                    public void run() {
+                        viewPager.setOnTouchListener(new View.OnTouchListener() {
+                            @Override
+                            public boolean onTouch(View view, MotionEvent motionEvent) {
+                                if(motionEvent.getAction()==MotionEvent.ACTION_MOVE)
+                                    touchedViewPager=true;
+                                else touchedViewPager = false;
+                                return false;
+                            }
+                        });
+                        if (!touchedViewPager){
+                            currentPage = viewPager.getCurrentItem();
+                            if (currentPage >= NUM_PAGES-1){
+                                currentPage = -1;
+                            }
+                            int nextPage = currentPage + 1;
+                            viewPager.setCurrentItem(nextPage,true);
+                        }
+                    }
+                });
+            }
+        },0,7000);
         //Grid View
         recyclerViewG = (RecyclerView)findViewById(R.id.GridRecyclerView);
         gridLayoutManager = new GridLayoutManager(this,2, LinearLayoutManager.VERTICAL,false);//2 = number of columns

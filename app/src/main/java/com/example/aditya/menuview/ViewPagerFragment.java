@@ -18,7 +18,7 @@ import static com.example.aditya.menuview.MainActivity.toast;
 public class ViewPagerFragment extends Fragment {
     private int mPageNumber;
     public static final String ARG_PAGE = "page";
-    int ImgResId[] = {R.drawable.advertising,R.drawable.advertising2,R.drawable.advertising3,R.drawable.advertising4};
+    int ImgResId[] = {R.drawable.advertisement,R.drawable.advertisement2,R.drawable.advertisement3,R.drawable.advertisement4};
 
     //Constructs a new fragment for the given page number.
     public static ViewPagerFragment create(int mPageNumber){
