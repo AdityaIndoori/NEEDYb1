@@ -22,22 +22,23 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:id="@+id/linearLayout"
+        android:visibility="gone"
         android:layout_above="@id/GridRecyclerView"
         android:layout_margin="4dp">
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="45dp"
             android:text="Top New"
             android:textSize="12sp"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorPrimary"
             android:textColor="#fff"
             android:layout_weight="1"
             android:layout_margin="2dp"/>
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="45dp"
             android:text="Trending"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorPrimary"
             android:textColor="#fff"
             android:textSize="12sp"
             android:layout_weight="1"
@@ -45,9 +46,9 @@
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="45dp"
             android:text="Most Viewed"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorPrimary"
             android:textColor="#fff"
             android:textSize="11sp"
             android:layout_weight="1"
@@ -55,9 +56,9 @@
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="45dp"
             android:text="Latest"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorPrimary"
             android:textColor="#fff"
             android:textSize="12sp"
             android:layout_weight="1"

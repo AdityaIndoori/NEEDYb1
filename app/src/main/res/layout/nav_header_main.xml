@@ -8,18 +8,18 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:orientation="vertical"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/colorPrimary"
     android:gravity="bottom">
     <!--
         android:background="@drawable/side_nav_bar"
     -->
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:scaleType="fitCenter"
         android:src="@drawable/needy_icon"
         android:id="@+id/imageView"
-        android:layout_marginTop="12dp"
         android:layout_centerVertical="true"/>
 </RelativeLayout>
