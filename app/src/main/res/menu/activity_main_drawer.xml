@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_profile"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Profile" />
+    <group >
+
         <item
             android:id="@+id/nav_myOrders"
-            android:title="My Orders" />
+            android:title="My Orders"
+            android:icon="@drawable/ic_shopping_basket_white_36dp"/>
         <item
             android:id="@+id/nav_wishList"
-            android:title="WishList" />
-        <item
-            android:id="@+id/nav_wallet"
-            android:title="Wallet" />
+            android:title="Wish List"
+            android:icon="@drawable/ic_list_white_36dp"/>
     </group>
 
     <item android:title="Communicate">
@@ -25,13 +22,16 @@
                 android:title="Invite" />
             <item
                 android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_settings_black_24dp"
                 android:title="Settings" />
             <item
                 android:id="@+id/nav_rateUs"
-                android:title="Rate Us"/>
+                android:title="Rate Us"
+                android:icon="@drawable/ic_grade_white_36dp"/>
             <item
                 android:id="@+id/nav_helpFeedback"
-                android:title="Help and Feedback"/>
+                android:title="Help and Feedback"
+                android:icon="@drawable/ic_feedback_white_48dp"/>
         </menu>
     </item>
 

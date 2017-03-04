@@ -2,14 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+    <item android:id="@+id/action_wallet"
+        android:title="Wallet"
+        android:icon="@drawable/ic_account_balance_wallet_white_24dp"
+        app:showAsAction="always" />
     <item android:id="@+id/action_cart"
-        android:icon="@drawable/cart"
+        android:icon="@drawable/ic_shopping_cart_white_24dp"
         android:title="Cart"
         android:orderInCategory="100"
         app:showAsAction="always" />
 
     <item android:id="@+id/action_admin"
-        android:icon="@drawable/administrator"
+        android:icon="@drawable/ic_account_circle_white_24dp"
         android:title="admin"
         android:orderInCategory="100"
         app:showAsAction="always" />

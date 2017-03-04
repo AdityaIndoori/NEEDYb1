@@ -11,7 +11,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,8 +26,8 @@ import me.relex.circleindicator.CircleIndicator;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GridRecyclerViewAdapter.ListItemClickListener, recyclerViewAdapter.ListItemClickListener {
 
-    String[] GridSubHeading = {"H-Mart","Wheels On Rent","C-BayBee","Emergency"};
-    int[] GridIconImage = {R.drawable.hmart,R.drawable.wheelsonrent,R.drawable.cbaybee,R.drawable.emergency};
+    String[] GridSubHeading = {"Emergency","H-Mart","Wheels On Rent","C-BayBee"};
+    int[] GridIconImage = {R.drawable.emergency,R.drawable.hmart,R.drawable.wheelsonrent,R.drawable.cbaybee};
     private GridRecyclerViewAdapter GridRecyclerViewAdapter;
     private recyclerViewAdapter recyclerViewAdapter;
     private RecyclerView recyclerViewG;
@@ -100,11 +99,12 @@ public class MainActivity extends AppCompatActivity
             }
         },0,7000);
         //Grid View
-        recyclerViewG = (RecyclerView)findViewById(R.id.GridRecyclerView);
-        gridLayoutManager = new GridLayoutManager(this,2, LinearLayoutManager.VERTICAL,false);//2 = number of columns
+        /*
+        recyclerViewG = (RecyclerView)findViewById(R.id.HorizontalRecyclerView);
+        gridLayoutManager = new GridLayoutManager(this,1, LinearLayoutManager.HORIZONTAL,false);//2 = number of columns
         recyclerViewG.setLayoutManager(gridLayoutManager);
         GridRecyclerViewAdapter = new GridRecyclerViewAdapter(GridIconImage,GridSubHeading,this);
-        recyclerViewG.setAdapter(GridRecyclerViewAdapter);
+        recyclerViewG.setAdapter(GridRecyclerViewAdapter);*/
 
     }
 

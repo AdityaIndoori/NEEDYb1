@@ -10,9 +10,9 @@
         android:layout_height="match_parent"
         android:background="@color/colorPrimary">
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/needy_icon"
+            android:layout_width="144dp"
+            android:layout_height="144dp"
+            android:src="@drawable/needy_white_icon"
             android:scaleType="centerInside"
             android:layout_margin="12dp"
             android:id="@+id/logo"
@@ -20,9 +20,7 @@
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="?android:attr/progressBarStyleLarge"
             android:layout_centerHorizontal="true"
-            android:indeterminateDrawable="@xml/progress"
             android:layout_alignParentBottom="true"/>
     </RelativeLayout>
 </RelativeLayout>
