@@ -12,7 +12,6 @@
         android:title="Cart"
         android:orderInCategory="100"
         app:showAsAction="always" />
-
     <item android:id="@+id/action_admin"
         android:icon="@drawable/ic_account_circle_white_24dp"
         android:title="admin"

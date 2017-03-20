@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import static com.example.aditya.menuview.MainActivity.toast;
 
 /**
  * Created by aditya on 07-02-2017.
@@ -44,10 +43,7 @@ public class ViewPagerFragment extends Fragment {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (toast != null)
-                    toast.cancel();
-                toast=Toast.makeText(getContext(),"The Advertisement number is: " + mPageNumber,Toast.LENGTH_LONG);
-                toast.show();
+                MainActivity.setToast("The Advertisement number is: " + mPageNumber,getContext());
             }
         });
         return  viewGroup;
