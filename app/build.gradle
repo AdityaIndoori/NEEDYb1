@@ -29,5 +29,6 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.1.0'
     compile 'me.relex:circleindicator:1.2.2@aar'
     compile 'com.mikhaellopez:circularimageview:3.0.2'
+    compile 'com.android.support.constraint:constraint-layout:1.0.1'
     testCompile 'junit:junit:4.12'
 }

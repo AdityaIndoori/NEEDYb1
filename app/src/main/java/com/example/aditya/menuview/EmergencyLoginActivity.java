@@ -3,6 +3,7 @@ package com.example.aditya.menuview;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -36,8 +37,7 @@ import static android.Manifest.permission.READ_CONTACTS;
 
 /**
  * A login screen that offers login via email/password.
- */
-public class EmergencyLoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+ */public class EmergencyLoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -49,7 +49,7 @@ public class EmergencyLoginActivity extends AppCompatActivity implements LoaderC
      * TODO: remove after connecting to a real authentication system.
      */
     private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
+            "foo@example.com:hello", "bar@example.com:world", "needy@needy.com:needy"
     };
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
@@ -144,7 +144,7 @@ public class EmergencyLoginActivity extends AppCompatActivity implements LoaderC
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
-        if (mAuthTask != null) {
+        if (mAuthTask != null) {//If user login is already being done, don't do it again
             return;
         }
 
@@ -298,10 +298,12 @@ public class EmergencyLoginActivity extends AppCompatActivity implements LoaderC
 
         private final String mEmail;
         private final String mPassword;
+        private boolean registerUser;
 
         UserLoginTask(String email, String password) {
             mEmail = email;
             mPassword = password;
+            registerUser = false;
         }
 
         @Override
@@ -311,6 +313,7 @@ public class EmergencyLoginActivity extends AppCompatActivity implements LoaderC
             try {
                 // Simulate network access.
                 Thread.sleep(2000);
+
             } catch (InterruptedException e) {
                 return false;
             }
@@ -324,6 +327,7 @@ public class EmergencyLoginActivity extends AppCompatActivity implements LoaderC
             }
 
             // TODO: register the new account here.
+            registerUser = true;
             return true;
         }
 
@@ -331,12 +335,16 @@ public class EmergencyLoginActivity extends AppCompatActivity implements LoaderC
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
             showProgress(false);
-
-            if (success) {
-                finish();
-            } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
+            if (registerUser)
+                registerUser();
+            else {
+                if (success) {
+                    finish();
+                    startActivity(new Intent(getApplicationContext(),EmergencyMainActivity.class));
+                } else {
+                    mPasswordView.setError(getString(R.string.error_incorrect_password));
+                    mPasswordView.requestFocus();
+                }
             }
         }
 
@@ -345,6 +353,10 @@ public class EmergencyLoginActivity extends AppCompatActivity implements LoaderC
             mAuthTask = null;
             showProgress(false);
         }
+    }
+
+    private void registerUser() {
+        MainActivity.setToast("Register User Here", getApplicationContext());
     }
 }
 
