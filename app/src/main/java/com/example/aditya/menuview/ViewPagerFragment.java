@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 
 /**
@@ -37,7 +36,7 @@ public class ViewPagerFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup viewGroup = (ViewGroup)inflater.inflate(R.layout.fragment_screen_view_pager,container,false);
+        ViewGroup viewGroup = (ViewGroup)inflater.inflate(R.layout.main_activity_fragment_screen_view_pager,container,false);
         ImageView imageView =(ImageView)viewGroup.findViewById(R.id.ImageViewInFragment);
         imageView.setImageResource(ImgResId[mPageNumber]);
         imageView.setOnClickListener(new View.OnClickListener() {

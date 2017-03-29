@@ -31,8 +31,17 @@
             android:name=".EmergencyLoginActivity"
             android:label="@string/title_activity_emergency_login"
             android:screenOrientation="portrait" />
-        <activity android:name=".EmergencyMainActivity" />
-        <activity android:name=".H_MartMainActivity"></activity>
+        <activity
+            android:name=".EmergencyMainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".H_MartMainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".hMartProductSelection"
+            android:label="@string/title_activity_h_mart_product_selection"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

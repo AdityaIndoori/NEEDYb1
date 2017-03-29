@@ -45,7 +45,7 @@ public class EmergencyMainActivity extends AppCompatActivity implements Emergenc
     @Override
     public void onListItemClick(int clickedItemIndex, int viewCode, String data) {
         if (viewCode == 0){
-            this.data = data;//Data is the string in the textView
+            this.data = data;//Data is the string in the textViewH_MartRecyclerViewItem
             TextViewEmergencyMain.setText(data);
         }
     }

@@ -191,7 +191,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void clickedrelativeLayoutH_Mart() {
-        setToast("Clicked H Mart", getApplicationContext());
+        //setToast("Clicked H Mart", getApplicationContext());
+        startActivity(new Intent(this,H_MartMainActivity.class));
     }
 
     private void clickedlinearLayoutEmergency() {

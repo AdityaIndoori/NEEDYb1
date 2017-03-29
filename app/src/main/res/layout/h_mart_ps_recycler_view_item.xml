@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:layout_marginLeft="4dp"
+    android:layout_marginRight="4dp">
+    <ImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:id="@+id/imageViewH_MartPSRecyclerViewItem"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_alignParentTop="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fresho"
+        android:id="@+id/fresho"
+        android:layout_toRightOf="@id/imageViewH_MartPSRecyclerViewItem"
+        android:layout_margin="8dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewH_MartProductName"
+        android:layout_toRightOf="@id/imageViewH_MartPSRecyclerViewItem"
+        android:layout_below="@id/fresho"
+        android:textColor="@color/primaryText"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="2dp"/>
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerH_MartPSRecyclerViewItem"
+        android:layout_below="@id/textViewH_MartProductName"
+        android:layout_toRightOf="@id/imageViewH_MartPSRecyclerViewItem"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="2dp"></Spinner>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewH_MartProductPrice"
+        android:text="Price: "
+        android:layout_below="@id/spinnerH_MartPSRecyclerViewItem"
+        android:layout_toRightOf="@id/imageViewH_MartPSRecyclerViewItem"
+        android:layout_alignStart="@id/spinnerH_MartPSRecyclerViewItem"
+        android:layout_alignLeft="@id/spinnerH_MartPSRecyclerViewItem"
+        android:layout_marginBottom="2dp" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        android:id="@+id/buttonH_MartPSAdd"
+        android:layout_alignBaseline="@+id/textViewH_MartProductPrice"
+        android:layout_alignBottom="@+id/textViewH_MartProductPrice"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="2dp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/buttonH_MartPSAdd"
+        android:background="@color/dividerColor"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"/>
+</RelativeLayout>

@@ -20,4 +20,10 @@
         completions."
     </string>
     <string name="emergency_send_btn">Send</string>
+    <string name="text_h_mart_lower_details">Shop By Category</string>
+    <string name="text_h_mart_upper_details_left">Express Delivery in 90 minutes</string>
+    <string name="text_h_mart_upper_details_right">Smart Basket View Items</string>
+    <string name="title_activity_h_mart_product_selection">hMartProductSelection</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="fresho">FRESHO</string>
 </resources>
