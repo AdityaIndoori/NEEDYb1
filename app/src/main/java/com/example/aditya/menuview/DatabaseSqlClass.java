@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.AsyncTask;
 import android.provider.BaseColumns;
 
 import java.util.ArrayList;
@@ -85,13 +86,15 @@ public final class DatabaseSqlClass {
     }
 
     //Containing methods to create and perform actions on different tables of the databases
-    static class NeedyDatabaseHelper extends SQLiteOpenHelper{
+    static class NeedyProductDbHelper extends SQLiteOpenHelper{
         // If you change the database schema, you must increment the database version.
-        static final int DATABASE_VERSION = 2;
-        static final String DATABASE_NAME = "NeedyDatabase.db";
+        static final int DATABASE_VERSION = 1;
+        static final String DATABASE_NAME = "NeedyProducts";
+        private Context context;
 
-        NeedyDatabaseHelper(Context context){
+        NeedyProductDbHelper(Context context){
             super(context,DATABASE_NAME,null,DATABASE_VERSION);
+            this.context = context;
         }
 
         @Override
@@ -100,6 +103,32 @@ public final class DatabaseSqlClass {
             db.execSQL(SQL_CREATE_ENTRIES_BREAD_DAIRY_EGGS);
             db.execSQL(SQL_CREATE_ENTRIES_GROCERIES_STAPLES);
             db.execSQL(SQL_CREATE_ENTRIES_FRUITS_VEGETABLES);
+            AsyncTask.execute(new Runnable() {
+                @Override
+                public void run() {
+                    NeedyProductDbHelper databaseHelper = new NeedyProductDbHelper(context);
+                    //Fruits&Vegetables
+                    databaseHelper.addItemToTable(DatabaseSqlClass.FruitsVegetablesTable.TABLE_NAME_FRUITS_VEGETABLES,"Broccoli",R.drawable.broccoli,new String[]{"1KG","2KG","3KG","10KG"},new int[]{1,2,3,10},20);
+                    databaseHelper.addItemToTable(DatabaseSqlClass.FruitsVegetablesTable.TABLE_NAME_FRUITS_VEGETABLES,"Onions",R.drawable.onion,new String[]{"1KG","2KG","3KG","10KG"},new int[]{1,2,3,10},10);
+                    databaseHelper.addItemToTable(DatabaseSqlClass.FruitsVegetablesTable.TABLE_NAME_FRUITS_VEGETABLES,"Orange",R.drawable.orange,new String[]{"1 Dozen","2 Dozens","3 Dozens","5 Dozens"},new int[]{1,2,3,5},40);
+                    databaseHelper.addItemToTable(DatabaseSqlClass.FruitsVegetablesTable.TABLE_NAME_FRUITS_VEGETABLES,"Pineapple",R.drawable.pineapple,new String[]{"1KG","2KG","3KG","5KG"},new int[]{1,2,3,5},35);
+                    //Groceries&Staples
+                    databaseHelper.addItemToTable(DatabaseSqlClass.GroceriesAndStaples.TABLE_NAME_GROCERIES_STAPLES,"Rice",R.drawable.rice,new String[]{"1KG","2KG","3KG","10KG"},new int[]{1,2,3,10},20);
+                    databaseHelper.addItemToTable(DatabaseSqlClass.GroceriesAndStaples.TABLE_NAME_GROCERIES_STAPLES,"Flour",R.drawable.flour,new String[]{"1KG","2KG","3KG","10KG"},new int[]{1,2,3,10},35);
+                    databaseHelper.addItemToTable(DatabaseSqlClass.GroceriesAndStaples.TABLE_NAME_GROCERIES_STAPLES,"Olive Oil",R.drawable.oliveoil,new String[]{"1 Litre","2 Litres","3 Litres","5 Litres"},new int[]{1,2,3,5},75);
+                    databaseHelper.addItemToTable(DatabaseSqlClass.GroceriesAndStaples.TABLE_NAME_GROCERIES_STAPLES,"Cashew Nuts",R.drawable.cashew,new String[]{"1KG","2KG","3KG","10KG"},new int[]{1,2,3,10},90);
+                    //Bread&Dairy
+                    databaseHelper.addItemToTable(DatabaseSqlClass.BreadDairyAndEggs.TABLE_NAME_BREAD_DAIRY_EGGS,"Bread",R.drawable.wheatbread,new String[]{"1 Packet","2 Packets","3 Packets","5 Packets"},new int[]{1,2,3,5},25);
+                    databaseHelper.addItemToTable(DatabaseSqlClass.BreadDairyAndEggs.TABLE_NAME_BREAD_DAIRY_EGGS,"Pizza Base",R.drawable.pizzabase,new String[]{"1 Base","2 Pizza Bases","3 Pizza Bases","5 Pizza Bases"},new int[]{1,2,3,5},40);
+                    databaseHelper.addItemToTable(DatabaseSqlClass.BreadDairyAndEggs.TABLE_NAME_BREAD_DAIRY_EGGS,"Milk",R.drawable.milk,new String[]{"1 Carton","2 Cartons","3 Cartons","5 Cartons"},new int[]{1,2,3,5},20);
+                    databaseHelper.addItemToTable(DatabaseSqlClass.BreadDairyAndEggs.TABLE_NAME_BREAD_DAIRY_EGGS,"Yogurt",R.drawable.yogurt,new String[]{"1 Pack","2 Packs","3 Packs","5 Packs"},new int[]{1,2,3,5},15);
+                    //Beverages
+                    databaseHelper.addItemToTable(DatabaseSqlClass.Beverages.TABLE_NAME_BEVERAGES,"Pepsi",R.drawable.pepsi,new String[]{"1 Bottle","2 Bottles","3 Bottles","5 Bottles"},new int[]{1,2,3,5},20);
+                    databaseHelper.addItemToTable(DatabaseSqlClass.Beverages.TABLE_NAME_BEVERAGES,"Hershey's Chocolate Shake ",R.drawable.chocolatemilk,new String[]{"1 Bottle","2 Bottles","3 Bottles","5 Bottles"},new int[]{1,2,3,5},30);
+                    databaseHelper.addItemToTable(DatabaseSqlClass.Beverages.TABLE_NAME_BEVERAGES,"Tuborg",R.drawable.tuborg,new String[]{"1 Bottle","2 Bottles","3 Bottles","5 Bottles"},new int[]{1,2,3,5},60);
+                    databaseHelper.addItemToTable(DatabaseSqlClass.Beverages.TABLE_NAME_BEVERAGES,"Monster",R.drawable.monster,new String[]{"1 Can","2 Cans","3 Cans","5 Cans"},new int[]{1,2,3,5},60);
+                }
+            });
         }
 
         @Override

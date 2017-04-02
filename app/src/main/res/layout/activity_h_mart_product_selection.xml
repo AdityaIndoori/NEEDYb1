@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.aditya.menuview.hMartProductSelection">
+    tools:context="com.example.aditya.menuview.H_MartProductSelection">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -37,6 +37,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButtonHMartCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="8dp"
+        android:clickable="true"
+        android:src="@drawable/ic_shopping_cart_white_36dp" />
 
 </android.support.design.widget.CoordinatorLayout>

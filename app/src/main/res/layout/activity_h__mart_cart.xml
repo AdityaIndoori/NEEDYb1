@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    tools:context="com.example.aditya.menuview.H_MartCartActivity">
+
+    <TextView
+        android:id="@+id/TextViewHMartCartBill"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:padding="1dp"
+        android:background="#ffffff"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+    <TextView
+        android:id="@+id/TextViewHMartCartDiscounts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/TextViewHMartCartBill"
+        android:layout_marginTop="1dp"
+        android:textColor="@color/secondaryText"
+        android:background="#ffffff"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center"
+        android:text="Shop for Rs. 850 and avail 25% OFF"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <Button
+        android:id="@+id/buttonH_MartCartConfirm"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/colorPrimary"
+        android:padding="8dp"
+        android:text="Confirm" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/RecyclerViewHMartCartItems"
+        android:layout_below="@id/TextViewHMartCartDiscounts"
+        android:layout_above="@id/buttonH_MartCartConfirm"
+        android:layout_margin="1dp"></android.support.v7.widget.RecyclerView>
+</RelativeLayout>

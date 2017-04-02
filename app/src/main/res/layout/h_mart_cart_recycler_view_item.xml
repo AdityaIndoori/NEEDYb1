@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:layout_marginBottom="2dp">
+    <ImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:id="@+id/imageViewH_MartCartRecyclerViewItem"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_alignParentTop="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fresho"
+        android:id="@+id/freshoHMartCart"
+        android:layout_toRightOf="@id/imageViewH_MartCartRecyclerViewItem"
+        android:layout_alignTop="@id/imageViewH_MartCartRecyclerViewItem"
+        android:layout_marginBottom="2dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewH_MartCartProductName"
+        android:layout_toRightOf="@id/imageViewH_MartCartRecyclerViewItem"
+        android:layout_below="@id/freshoHMartCart"
+        android:textColor="@color/primaryText"
+        android:layout_marginBottom="2dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewH_MartCartQuantity"
+        android:layout_toRightOf="@id/imageViewH_MartCartRecyclerViewItem"
+        android:layout_below="@id/textViewH_MartCartProductName"
+        android:textColor="@color/primaryText"
+        android:layout_marginBottom="2dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewH_MartCartProductPrice"
+        android:text="Price: "
+        android:layout_below="@id/textViewH_MartCartQuantity"
+        android:layout_toRightOf="@id/imageViewH_MartCartRecyclerViewItem"
+        android:layout_marginBottom="2dp" />
+
+    <Button
+        android:id="@+id/buttonH_MartCartDelete"
+        style="@android:style/Widget.DeviceDefault.Light.Button.Borderless.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/freshoHMartCart"
+        android:layout_marginBottom="2dp"
+        android:text="Delete" />
+
+</RelativeLayout>

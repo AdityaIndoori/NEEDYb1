@@ -38,10 +38,11 @@
             android:name=".H_MartMainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".hMartProductSelection"
+            android:name=".H_MartProductSelection"
             android:label="@string/title_activity_h_mart_product_selection"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".H_MartCartActivity"></activity>
     </application>
 
 </manifest>

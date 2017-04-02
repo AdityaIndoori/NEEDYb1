@@ -44,7 +44,7 @@ public class H_MartMainActivity extends AppCompatActivity implements H_MartRecyc
 
     @Override
     public void OnListItemClickListenerForH_Mart(int clickedItemIndex, String data) {
-        Intent hMartIntent = new Intent(getApplicationContext(),hMartProductSelection.class);
+        Intent hMartIntent = new Intent(getApplicationContext(),H_MartProductSelection.class);
         hMartIntent.putExtra("clickedItemIndex",clickedItemIndex);
         startActivity(hMartIntent);
     }
