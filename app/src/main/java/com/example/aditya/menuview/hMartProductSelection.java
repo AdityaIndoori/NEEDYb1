@@ -14,6 +14,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,8 +23,12 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class hMartProductSelection extends AppCompatActivity {
     private int clickedItemIndex;
+
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -58,7 +63,6 @@ public class hMartProductSelection extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         tabLayout.setupWithViewPager(mViewPager);
-
     }
 
 
@@ -93,71 +97,22 @@ public class hMartProductSelection extends AppCompatActivity {
          * fragment.
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
-        private String[] fruitsAndVegetablesArray = new String[]{
-                "Onion-Medium"
-                ,"Chilly Green Big"
-                ,"Capsicum"
-                ,"Tomatoes"
-                };
-        private String[] groceriesAndStaples = new String[]{
-                "Tomato sauce",
-                "Mustard",
-                "Barbecue sauce",
-                "Red-wine vinegar",
-                };
-        private String[] breadDairyAndEggs = new String[]{
-                "Whole Wheat Bread"
-                ,"Toned Milk"
-                ,"Milk Bread"
-                ,"Eggs"};
-        private String[] beverages = new String[]{
-                "Fanta",
-                "Grape Wine",
-                "Aqua-Panna",
-                "Shirley Temple"};
-        private String[][] categoryNamesArray = new String[][]{fruitsAndVegetablesArray,
-                groceriesAndStaples,
-                breadDairyAndEggs,
-                beverages};
-        private String[] OnionMediumQuantity = {"1","2","3","4"};
-        private String[] ChillyGreenBigQuantity = {"2","4","6","8"};
-        private String[] Capsicum = {"1","3","5","7"};
-        private String[] Tomatoes = {"1","2","3","4"};
-        private String[][] fruitsAndVegetablesArrayQantity = new String[][]{
-                OnionMediumQuantity,
-                ChillyGreenBigQuantity,
-                Capsicum,
-                Tomatoes};
-        private String[][] groceriesAndStaplesQuantity = new String[][]{
-                OnionMediumQuantity,
-                ChillyGreenBigQuantity,
-                Capsicum,
-                Tomatoes};
-        private String[][] breadDairyAndEggsQuantity = new String[][]{
-                OnionMediumQuantity,
-                ChillyGreenBigQuantity,
-                Capsicum,
-                Tomatoes};
-        private String[][] beveragesQuantity = new String[][]{
-                OnionMediumQuantity,
-                ChillyGreenBigQuantity,
-                Capsicum,
-                Tomatoes};
-        private String[][][] spinnerQuantitiesArray = new String[][][]{fruitsAndVegetablesArrayQantity
-                ,groceriesAndStaplesQuantity
-                ,breadDairyAndEggsQuantity
-                ,beveragesQuantity};
-        private int[] fruitsAndVegetablesArrayPrice = {5,10,10,5};
-        private int[] groceriesAndStaplesPrice = {10,5,5,10};
-        private int[] breadDairyAndEggsPrice = {5,10,5,10};
-        private int[] beveragesPrice = {10,5,10,5};
-        private int[][] pricePerProduct = new int[][]{fruitsAndVegetablesArrayPrice
-                ,groceriesAndStaplesPrice
-                ,breadDairyAndEggsPrice
-                ,beveragesPrice};
         private RecyclerView recyclerViewH_MartPS;
         private H_MartPSRecyclerViewAdapter hMartPSRecyclerViewAdapter;
         private LinearLayoutManager linearLayoutManager;
+        private DatabaseSqlClass.NeedyDatabaseHelper databaseHelper;
+        int numberOfItems;
+        ArrayList<String> namesArray;
+        ArrayList<Integer> imagesArray;
+        ArrayList<String[]> spinnerArray;
+        ArrayList<Integer[]> spinnerArrayData;
+        ArrayList<Integer> pricePerProduct;
+        private String[] tableNames = new String[]{
+                DatabaseSqlClass.FruitsVegetablesTable.TABLE_NAME_FRUITS_VEGETABLES,
+                DatabaseSqlClass.GroceriesAndStaples.TABLE_NAME_GROCERIES_STAPLES,
+                DatabaseSqlClass.BreadDairyAndEggs.TABLE_NAME_BREAD_DAIRY_EGGS,
+                DatabaseSqlClass.Beverages.TABLE_NAME_BEVERAGES
+        };
         public PlaceholderFragment() {
         }
 
@@ -176,6 +131,7 @@ public class hMartProductSelection extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+            databaseHelper = new DatabaseSqlClass.NeedyDatabaseHelper(this.getActivity().getApplicationContext());
             View rootView = inflater.inflate(R.layout.fragment_h_mart_product_selection, container, false);
             int categoryPosition = getArguments().getInt(ARG_SECTION_NUMBER);
             /*TextView textView = (TextView) rootView.findViewById(R.id.section_label);
@@ -183,18 +139,27 @@ public class hMartProductSelection extends AppCompatActivity {
             recyclerViewH_MartPS = (RecyclerView) rootView.findViewById(R.id.hMartPSRecyclerView);
             linearLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
             recyclerViewH_MartPS.setLayoutManager(linearLayoutManager);
-            hMartPSRecyclerViewAdapter = new H_MartPSRecyclerViewAdapter(categoryNamesArray[categoryPosition].length,
-                    categoryNamesArray[categoryPosition],
-                    spinnerQuantitiesArray[categoryPosition],
-                    pricePerProduct[categoryPosition],
-                    this,
-                    getContext());
+            /*numberOfItems = 4;
+            namesArray = new ArrayList<>(Arrays.asList("Onions","Rice","Tuborg","Pizza Base"));
+            imagesArray= new ArrayList<>(Arrays.asList(R.drawable.onion,R.drawable.rice,R.drawable.tuborg,R.drawable.pizzabase));
+            spinnerArray = new ArrayList<>(Arrays.asList(new String[]{"1KG","2KG","3KG","4KG"},new String[]{"10 KiloGrams","20 Kilograms","30 Kilograms","40 Kilos"},new String[]{"1 Bottle","3 Bottles"," 5 Bottles","6 Bottles"},new String[]{"1 base","3 Bases","5 Bases","10 Bases"}));
+            spinnerArrayData = new ArrayList<>(Arrays.asList(new Integer[]{1,2,3,4},new Integer[]{10,20,30,40},new Integer[]{1,3,5,6},new Integer[]{1,3,5,10}));
+            pricePerProduct  = new ArrayList<>(Arrays.asList(10,30,70,40));
+*/
+            numberOfItems = databaseHelper.numberOfItems(tableNames[categoryPosition]);
+            namesArray = databaseHelper.getItemNamesFromTable(tableNames[categoryPosition]);
+            imagesArray = databaseHelper.getImageIDFromTable(tableNames[categoryPosition]);
+            spinnerArray = databaseHelper.getQuantityStringArray(tableNames[categoryPosition]);
+            spinnerArrayData = databaseHelper.getQuantiyIntArray(tableNames[categoryPosition]);
+            pricePerProduct = databaseHelper.getPriceFromTable(tableNames[categoryPosition]);
+            hMartPSRecyclerViewAdapter = new H_MartPSRecyclerViewAdapter(numberOfItems,namesArray,imagesArray,spinnerArray,spinnerArrayData,pricePerProduct,this,getContext());
             recyclerViewH_MartPS.setAdapter(hMartPSRecyclerViewAdapter);
             return rootView;
         }
         @Override
         public void onH_MartProductClicked(int clickedItemIndex, String data) {
             MainActivity.setToast("Position: " + clickedItemIndex + " Name: " + data,getContext());
+
         }
     }
 
