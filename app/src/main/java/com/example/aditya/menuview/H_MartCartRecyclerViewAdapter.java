@@ -47,12 +47,30 @@ public class H_MartCartRecyclerViewAdapter extends RecyclerView.Adapter<H_MartCa
 
     @Override
     public void onBindViewHolder(CartViewHolderClass holder, int position) {
-        holder.bind(position);
+        holder.bind(holder.getAdapterPosition());
     }
 
     @Override
     public int getItemCount() {
-        return NumberOfItems;
+        return namesArray.size();
+    }
+
+    public void deleteItem(int position){
+        namesArray.remove(position);
+        imagesArray.remove(position);
+        quantityArrayString.remove(position);
+        quantityArrayInt.remove(position);
+        pricePerProduct.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position,namesArray.size());
+    }
+
+    public int totalBill(){
+        int totalBill = 0;
+        for (int i = 0;i<getItemCount();i++){
+            totalBill+=pricePerProduct.get(i)*quantityArrayInt.get(i);
+        }
+        return totalBill;
     }
 
     class CartViewHolderClass extends RecyclerView.ViewHolder{
@@ -60,7 +78,7 @@ public class H_MartCartRecyclerViewAdapter extends RecyclerView.Adapter<H_MartCa
         private TextView productName, productPrice, productQuantity;
         private Button deleteButton;
 
-        public CartViewHolderClass(View itemView) {
+        public CartViewHolderClass(final View itemView) {
             super(itemView);
             productImage = (ImageView) itemView.findViewById(R.id.imageViewH_MartCartRecyclerViewItem);
             productName = (TextView) itemView.findViewById(R.id.textViewH_MartCartProductName);
@@ -70,6 +88,7 @@ public class H_MartCartRecyclerViewAdapter extends RecyclerView.Adapter<H_MartCa
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    deleteItem(getAdapterPosition());
                     h_martCartItemClickeListener.onH_MartCartItemClicked(deleteButton.getId(),deleteButton.getText().toString());
                 }
             });

@@ -42,7 +42,13 @@
             android:label="@string/title_activity_h_mart_product_selection"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".H_MartCartActivity"></activity>
+        <activity android:name=".H_MartCartActivity" />
+        <activity android:name=".H_MartDeliveryOptions" />
+        <activity
+            android:name=".WOR_MainActivity"
+            android:label="@string/title_activity_wor__main"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".H_MartPaymentOptions"></activity>
     </application>
 
 </manifest>

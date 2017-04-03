@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.aditya.menuview.H_MartDeliveryOptions"
+    android:background="@color/backgroundColor">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:elevation="4dp"
+            android:background="#ffffff">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/relativeLayoutStdDelivery"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_margin="8dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Standard Delivery"
+                    android:id="@+id/standardDeliveryTextViewHMart"
+                    android:layout_alignParentTop="true"
+                    android:textColor="@color/primaryText"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:layout_margin="8dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Delivery Time:"
+                    android:id="@+id/deliveryTimeTextView"
+                    android:layout_below="@id/standardDeliveryTextViewHMart"
+                    android:layout_margin="8dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/standardDeliveryNumberOfItems"
+                    android:layout_alignTop="@id/standardDeliveryTextViewHMart"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="8dp"
+                    android:text="10 Items"/>
+                <TextView
+                    android:id="@+id/deliveryDetailsTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/deliveryTimeTextView"
+                    android:layout_toRightOf="@id/deliveryTimeTextView"
+                    android:gravity="center"
+                    android:text="Wed, 15/10/2017 9:30AM - 12:00PM"/>
+            </RelativeLayout>
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:elevation="4dp"
+            android:layout_margin="8dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:id="@+id/relativeLayoutExpDelivery"
+                android:layout_margin="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Express Delivery"
+                    android:id="@+id/expressDeliveryTextViewHMart"
+                    android:layout_alignParentTop="true"
+                    android:textColor="@color/primaryText"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:layout_margin="8dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/expDeliveryNumberOfItemsDelivered"
+                    android:text="Get 4 out of 10 items on Express Delivery"
+                    android:layout_below="@id/expressDeliveryTextViewHMart"
+                    android:layout_margin="8dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Delivery Time:"
+                    android:id="@+id/deliveryTimeTextViewExp"
+                    android:layout_below="@id/expDeliveryNumberOfItemsDelivered"
+                    android:layout_margin="8dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/expressDeliveryTextViewHMart"
+                    android:id="@+id/numberOfItemsExpDelivery"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="8dp"
+                    android:text="10 Items"/>
+                <TextView
+                    android:id="@+id/deliveryDetailsTextViewExp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/deliveryTimeTextViewExp"
+                    android:layout_toRightOf="@id/deliveryTimeTextViewExp"
+                    android:gravity="center"
+                    android:text="Wed, 15/10/2017 9:30AM - 12:00PM"/>
+
+                <TextView
+                    android:id="@+id/TextViewDeliveryChargesExp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/deliveryTimeTextViewExp"
+                    android:layout_margin="8dp"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="Delivery Charges: Rs. 20/-" />
+            </RelativeLayout>
+        </FrameLayout>
+    </LinearLayout>
+</RelativeLayout>

@@ -184,7 +184,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void clickedrelativeLayoutWheelsOnRent() {
-        setToast("Clicked Wheels On Rent", getApplicationContext());
+        startActivity(new Intent(getApplicationContext(),WOR_MainActivity.class));
     }
 
     private void clickedrelativeLayoutH_Mart() {
