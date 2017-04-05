@@ -1,35 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="wrap_content"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:id="@+id/relativeLayoutH_MartRecyclerViewItem"
     android:background="?android:attr/selectableItemBackground"
     android:clickable="true"
     android:focusable="true">
-
+    <RelativeLayout
+        android:layout_width="96dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayoutRecyclerH_MartMainItem"
+        android:layout_alignParentTop="true"
+        android:layout_margin="8dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewH_MartRecyclerView"
+            android:gravity="center"
+            android:layout_margin="8dp"
+            android:layout_alignParentBottom="true"
+            android:textColor="@color/secondaryText"/>
         <ImageView
-            android:layout_width="96dp"
-            android:layout_height="48dp"
-            android:layout_alignParentTop="true"
+            android:layout_above="@id/textViewH_MartRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:id="@+id/imageViewH_MartRecyclerView"
             android:scaleType="fitCenter"
             android:layout_gravity="center"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/imageViewH_MartRecyclerView"
-            android:layout_alignStart="@id/imageViewH_MartRecyclerView"
-            android:id="@+id/textViewH_MartRecyclerView"
-            android:gravity="center"
-            android:textColor="@color/secondaryText"
-            android:layout_alignLeft="@id/imageViewH_MartRecyclerView"
-            android:layout_alignEnd="@id/imageViewH_MartRecyclerView"
-            android:layout_alignRight="@id/imageViewH_MartRecyclerView" />
+    </RelativeLayout>
+
+
+
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:layout_toRightOf="@id/textViewH_MartRecyclerView"
+            android:layout_toRightOf="@id/relativeLayoutRecyclerH_MartMainItem"
             android:background="@color/dividerColor"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"/>
+            android:layout_alignTop="@id/imageViewH_MartCartRecyclerViewItem"
+            android:layout_alignBottom="@id/relativeLayoutRecyclerH_MartMainItem"/>
 </RelativeLayout>
