@@ -6,27 +6,101 @@
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
     tools:context="com.example.aditya.menuview.H_MartPaymentOptions">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="#ffffff"
-        android:layout_margin="8dp"
-        android:layout_centerInParent="true">
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textViewPaymentDetailsText"
-            android:layout_margin="4dp"
-            android:layout_weight="1"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textViewPaymentDetailsNumbers"
-            android:layout_margin="4dp"
-            android:layout_weight="1"
-            />
-    </LinearLayout>
+            android:orientation="vertical"
+            android:background="#ffffff"
+            android:layout_margin="8dp"
+            android:id="@+id/linearLayoutBill"
+            android:layout_alignParentTop="true">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Billing:"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewPaymentDetailsText"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewPaymentDetailsNumbers"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linearLayoutBill"
+            android:background="#ffffff"
+            android:layout_alignLeft="@id/linearLayoutBill"
+            android:layout_alignStart="@id/linearLayoutBill"
+            android:layout_alignEnd="@id/linearLayoutBill"
+            android:layout_alignRight="@id/linearLayoutBill">
+            <TextView
+                android:id="@+id/textPaymentTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="Payment Options:"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textPaymentTitle"
+                android:layout_margin="8dp"
+                android:layout_alignStart="@id/textPaymentTitle"
+                android:layout_alignLeft="@id/textPaymentTitle">
+                <RadioButton
+                    android:id="@+id/radioboxWallet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Use Wallet for Payment"
+                    android:layout_marginTop="8dp"/>
+                <RadioButton
+                    android:id="@+id/radioCashOnDelivery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cash On Delivery"
+                    android:layout_marginTop="8dp"/>
+                <RadioButton
+                    android:id="@+id/radioPayUMoney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PayUMoney Wallet"
+                    android:layout_marginTop="8dp"/>
+                <RadioButton
+                    android:id="@+id/radioPayTM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pay with PayTM Wallet"
+                    android:layout_marginTop="8dp"/>
+            </RadioGroup>
+
+
+        </RelativeLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="8dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Proceed"
+            android:textColor="#ffffff"/>
 </RelativeLayout>
