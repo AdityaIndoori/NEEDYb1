@@ -1,6 +1,7 @@
 package com.example.aditya.menuview;
 
 import android.content.Intent;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -36,10 +37,16 @@ public class H_MartMainActivity extends AppCompatActivity implements H_MartRecyc
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id==R.id.action_search_main_hmart)
-            MainActivity.setToast("H Mart Search", getApplicationContext());
-        return super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+            case R.id.action_search_main_hmart:
+                MainActivity.setToast("H Mart Search", getApplicationContext());
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override

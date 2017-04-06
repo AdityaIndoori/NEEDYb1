@@ -1,8 +1,10 @@
 package com.example.aditya.menuview;
 
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 public class  H_MartPaymentOptions extends AppCompatActivity {
@@ -35,5 +37,16 @@ public class  H_MartPaymentOptions extends AppCompatActivity {
         }
         textViewPaymentDetailsText.setText(Html.fromHtml(billingText));
         textViewPaymentDetailsNumbers.setText(Html.fromHtml(billingNumber));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

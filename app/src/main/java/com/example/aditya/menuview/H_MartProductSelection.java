@@ -3,6 +3,7 @@ package com.example.aditya.menuview;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -48,6 +49,7 @@ public class H_MartProductSelection extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle("H Mart");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         floatingActionButtonHMartCart = (FloatingActionButton) findViewById(R.id.floatingActionButtonHMartCart);
         floatingActionButtonHMartCart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +87,10 @@ public class H_MartProductSelection extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        }
+        if (id == android.R.id.home){
+            NavUtils.navigateUpFromSameTask(this);
             return true;
         }
 

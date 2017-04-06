@@ -1,8 +1,10 @@
 package com.example.aditya.menuview;
 
 import android.content.Intent;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -34,5 +36,16 @@ public class H_MartDeliveryOptions extends AppCompatActivity implements View.OnC
             startActivity(new Intent(getApplicationContext(),H_MartPaymentOptions.class).putExtra("isExpress",false).putExtra("bill",getIntent().getIntExtra("bill",0)).putExtra("items",getIntent().getIntExtra("items",0)));
         else if (id == R.id.relativeLayoutExpDelivery)
             startActivity(new Intent(getApplicationContext(),H_MartPaymentOptions.class).putExtra("isExpress",true).putExtra("bill",getIntent().getIntExtra("bill",0)).putExtra("items",getIntent().getIntExtra("items",0)));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

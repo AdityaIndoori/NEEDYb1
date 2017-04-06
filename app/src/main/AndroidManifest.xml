@@ -30,29 +30,56 @@
         <activity
             android:name=".EmergencyLoginActivity"
             android:label="@string/title_activity_emergency_login"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.aditya.menuview.MainActivity" />
+        </activity>
         <activity
             android:name=".EmergencyMainActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".H_MartMainActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.aditya.menuview.MainActivity" />
+        </activity>
         <activity
             android:name=".H_MartProductSelection"
             android:label="@string/title_activity_h_mart_product_selection"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".H_MartCartActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".H_MartDeliveryOptions"
-            android:screenOrientation="portrait"/>
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.aditya.menuview.H_MartMainActivity" />
+        </activity>
+        <activity
+            android:name=".H_MartCartActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.aditya.menuview.H_MartProductSelection" />
+        </activity>
+        <activity
+            android:name=".H_MartDeliveryOptions"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.aditya.menuview.H_MartCartActivity" />
+        </activity>
+        <activity
+            android:name=".H_MartPaymentOptions"
+        android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.aditya.menuview.H_MartDeliveryOptions" />
+        </activity>
         <activity
             android:name=".WOR_MainActivity"
             android:label="@string/title_activity_wor__main"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".H_MartPaymentOptions"
-            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

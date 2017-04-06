@@ -1,10 +1,12 @@
 package com.example.aditya.menuview;
 
 import android.content.Intent;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -55,4 +57,17 @@ public class H_MartCartActivity extends AppCompatActivity implements H_MartCartR
     public void onH_MartCartItemClicked(int ViewId, String data) {
         textViewCartBill.setText(cartRecyclerViewAdapter.getItemCount() + " Items" + " - " + "₹. " + cartRecyclerViewAdapter.totalBill() + "/-");
     }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 }

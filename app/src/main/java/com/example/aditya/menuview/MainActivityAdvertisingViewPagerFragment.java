@@ -13,14 +13,14 @@ import android.widget.ImageView;
  * Created by aditya on 07-02-2017.
  */
 
-public class ViewPagerFragment extends Fragment {
-    private int mPageNumber;
+public class MainActivityAdvertisingViewPagerFragment extends Fragment {
     public static final String ARG_PAGE = "page";
-    int ImgResId[] = {R.drawable.ads1,R.drawable.ads2,R.drawable.ads3,R.drawable.ads4};
+    int ImgResId[] = {R.drawable.ads1, R.drawable.ads2, R.drawable.ads3, R.drawable.ads4};
+    private int mPageNumber;
 
     //Constructs a new fragment for the given page number.
-    public static ViewPagerFragment create(int mPageNumber){
-        ViewPagerFragment fragment = new ViewPagerFragment();
+    public static MainActivityAdvertisingViewPagerFragment create(int mPageNumber) {
+        MainActivityAdvertisingViewPagerFragment fragment = new MainActivityAdvertisingViewPagerFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE, mPageNumber);
         fragment.setArguments(args);
@@ -36,16 +36,16 @@ public class ViewPagerFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup viewGroup = (ViewGroup)inflater.inflate(R.layout.main_activity_fragment_screen_view_pager,container,false);
-        ImageView imageView =(ImageView)viewGroup.findViewById(R.id.ImageViewInFragment);
+        ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.main_activity_fragment_screen_view_pager, container, false);
+        ImageView imageView = (ImageView) viewGroup.findViewById(R.id.ImageViewInFragment);
         imageView.setImageResource(ImgResId[mPageNumber]);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.setToast("The Advertisement number is: " + mPageNumber,getContext());
+                MainActivity.setToast("The Advertisement number is: " + mPageNumber, getContext());
             }
         });
-        return  viewGroup;
+        return viewGroup;
     }
 
     /**

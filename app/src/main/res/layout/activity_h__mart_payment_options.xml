@@ -59,19 +59,24 @@
                 android:layout_margin="8dp"
                 android:text="Payment Options:"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+            <RadioButton
+                android:id="@+id/radioboxWallet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Use Wallet for Payment"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_alignStart="@id/textPaymentTitle"
+                android:layout_alignLeft="@id/textPaymentTitle"                android:layout_below="@id/textPaymentTitle"/>
             <RadioGroup
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textPaymentTitle"
-                android:layout_margin="8dp"
+                android:layout_below="@id/radioboxWallet"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="2dp"
                 android:layout_alignStart="@id/textPaymentTitle"
                 android:layout_alignLeft="@id/textPaymentTitle">
-                <RadioButton
-                    android:id="@+id/radioboxWallet"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Use Wallet for Payment"
-                    android:layout_marginTop="8dp"/>
+
                 <RadioButton
                     android:id="@+id/radioCashOnDelivery"
                     android:layout_width="wrap_content"
@@ -91,8 +96,6 @@
                     android:text="Pay with PayTM Wallet"
                     android:layout_marginTop="8dp"/>
             </RadioGroup>
-
-
         </RelativeLayout>
         <Button
             android:layout_width="match_parent"

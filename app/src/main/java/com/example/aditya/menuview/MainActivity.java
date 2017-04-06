@@ -3,10 +3,10 @@ package com.example.aditya.menuview;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -26,11 +26,18 @@ import me.relex.circleindicator.CircleIndicator;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     private static final int NUM_PAGES = 4;
+    public static Toast toast;
     private ViewPager viewPager;
     private int currentPage;
     private LinearLayout linearLayoutEmergency;
     private RelativeLayout relativeLayoutH_Mart, relativeLayoutWheelsOnRent, relativeLayoutC_BayBee;
-    public static Toast toast;
+
+    public static void setToast(String toastMessage, Context context) {
+        if (toast != null)
+            toast.cancel();
+        toast = Toast.makeText(context, toastMessage, Toast.LENGTH_SHORT);
+        toast.show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +48,7 @@ public class MainActivity extends AppCompatActivity
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-            this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -49,8 +56,8 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         //ViewPager
-        viewPager = (ViewPager)findViewById(R.id.viewpager);
-        PagerAdapter mPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), NUM_PAGES);
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        PagerAdapter mPagerAdapter = new MainActivityAdvertisingViewPagerAdapter(getSupportFragmentManager(), NUM_PAGES);
         CircleIndicator indicator = (CircleIndicator) findViewById(R.id.indicator);
         viewPager.setAdapter(mPagerAdapter);
         indicator.setViewPager(viewPager);
@@ -60,18 +67,19 @@ public class MainActivity extends AppCompatActivity
             public void run() {
                 runOnUiThread(new Runnable() {
                     boolean touchedViewPager;
+
                     @Override
                     public void run() {
-                            currentPage = viewPager.getCurrentItem();
-                            if (currentPage >= NUM_PAGES-1){
-                                currentPage = -1;
-                            }
-                            int nextPage = currentPage + 1;
-                            viewPager.setCurrentItem(nextPage,true);
+                        currentPage = viewPager.getCurrentItem();
+                        if (currentPage >= NUM_PAGES - 1) {
+                            currentPage = -1;
+                        }
+                        int nextPage = currentPage + 1;
+                        viewPager.setCurrentItem(nextPage, true);
                     }
                 });
             }
-        },0,7000);
+        }, 0, 7000);
 
         //UI Elements:
         linearLayoutEmergency = (LinearLayout) findViewById(R.id.linearLayoutEmergency);
@@ -113,16 +121,16 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_admin) {
-            setToast("Clicked Admin Menu",getApplicationContext());
+            setToast("Clicked Admin Menu", getApplicationContext());
         }
 
-        if (id == R.id.action_cart){
-            startActivity(new Intent(getApplicationContext(),H_MartCartActivity.class));
+        if (id == R.id.action_cart) {
+            startActivity(new Intent(getApplicationContext(), H_MartCartActivity.class));
 
         }
 
-        if (id == R.id.action_wallet){
-            setToast("Clicked Wallet Menu",getApplicationContext());
+        if (id == R.id.action_wallet) {
+            setToast("Clicked Wallet Menu", getApplicationContext());
 
         }
 
@@ -136,35 +144,28 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_myOrders) {
-            setToast("Clicked Orders Menu",getApplicationContext());
+            setToast("Clicked Orders Menu", getApplicationContext());
 
         } else if (id == R.id.nav_wishList) {
-            setToast("Clicked WishList Menu",getApplicationContext());
+            setToast("Clicked WishList Menu", getApplicationContext());
 
         } else if (id == R.id.nav_invite) {
-            setToast("Clicked Invite Menu",getApplicationContext());
+            setToast("Clicked Invite Menu", getApplicationContext());
 
         } else if (id == R.id.nav_settings) {
-            setToast("Clicked Settings Menu",getApplicationContext());
+            setToast("Clicked Settings Menu", getApplicationContext());
 
         } else if (id == R.id.nav_rateUs) {
-            setToast("Clicked rateUs Menu",getApplicationContext());
+            setToast("Clicked rateUs Menu", getApplicationContext());
 
         } else if (id == R.id.nav_helpFeedback) {
-            setToast("Clicked Help & Feedback Menu",getApplicationContext());
+            setToast("Clicked Help & Feedback Menu", getApplicationContext());
 
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    public static void setToast(String toastMessage, Context context){
-        if (toast != null)
-        toast.cancel();
-        toast=Toast.makeText(context,toastMessage,Toast.LENGTH_SHORT);
-        toast.show();
     }
 
     @Override
@@ -180,19 +181,19 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void clickedrelativeLayoutC_BayBee() {
-        setToast("C-Baybee",getApplicationContext());
+        setToast("C-Baybee", getApplicationContext());
     }
 
     private void clickedrelativeLayoutWheelsOnRent() {
-        startActivity(new Intent(getApplicationContext(),WOR_MainActivity.class));
+        startActivity(new Intent(getApplicationContext(), WOR_MainActivity.class));
     }
 
     private void clickedrelativeLayoutH_Mart() {
         //setToast("Clicked H Mart", getApplicationContext());
-        startActivity(new Intent(this,H_MartMainActivity.class));
+        startActivity(new Intent(this, H_MartMainActivity.class));
     }
 
     private void clickedlinearLayoutEmergency() {
-        startActivity(new Intent(getApplicationContext(),EmergencyLoginActivity.class));
+        startActivity(new Intent(getApplicationContext(), EmergencyLoginActivity.class));
     }
 }
