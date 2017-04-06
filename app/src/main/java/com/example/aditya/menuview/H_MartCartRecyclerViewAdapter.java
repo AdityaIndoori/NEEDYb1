@@ -38,6 +38,7 @@ public class H_MartCartRecyclerViewAdapter extends RecyclerView.Adapter<H_MartCa
 
     public interface H_MartCartItemClickeListener {
         void onH_MartCartItemClicked(int ViewId, String data);
+        void onH_MartCartItemDeleted(int position);
     }
     @Override
     public CartViewHolderClass onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -88,6 +89,7 @@ public class H_MartCartRecyclerViewAdapter extends RecyclerView.Adapter<H_MartCa
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    h_martCartItemClickeListener.onH_MartCartItemDeleted(getAdapterPosition()+1);
                     deleteItem(getAdapterPosition());
                     h_martCartItemClickeListener.onH_MartCartItemClicked(deleteButton.getId(),deleteButton.getText().toString());
                 }

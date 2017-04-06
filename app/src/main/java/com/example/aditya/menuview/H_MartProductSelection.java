@@ -150,14 +150,14 @@ public class H_MartProductSelection extends AppCompatActivity {
             linearLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
             recyclerViewH_MartPS.setLayoutManager(linearLayoutManager);
 
-            /*numberOfItems = 4;
+            /*getNumberOfItems = 4;
             namesArray = new ArrayList<>(Arrays.asList("Onions","Rice","Tuborg","Pizza Base"));
             imagesArray= new ArrayList<>(Arrays.asList(R.drawable.onion,R.drawable.rice,R.drawable.tuborg,R.drawable.pizzabase));
             spinnerArray = new ArrayList<>(Arrays.asList(new String[]{"1KG","2KG","3KG","4KG"},new String[]{"10 KiloGrams","20 Kilograms","30 Kilograms","40 Kilos"},new String[]{"1 Bottle","3 Bottles"," 5 Bottles","6 Bottles"},new String[]{"1 base","3 Bases","5 Bases","10 Bases"}));
             spinnerArrayData = new ArrayList<>(Arrays.asList(new Integer[]{1,2,3,4},new Integer[]{10,20,30,40},new Integer[]{1,3,5,6},new Integer[]{1,3,5,10}));
             pricePerProduct  = new ArrayList<>(Arrays.asList(10,30,70,40));
 */
-            numberOfItems = databaseHelper.numberOfItems(tableNames[categoryPosition]);
+            numberOfItems = databaseHelper.getNumberOfItems(tableNames[categoryPosition]);
             namesArray = databaseHelper.getItemNamesFromTable(tableNames[categoryPosition]);
             imagesArray = databaseHelper.getImageIDFromTable(tableNames[categoryPosition]);
             spinnerArray = databaseHelper.getQuantityStringArray(tableNames[categoryPosition]);
@@ -167,9 +167,11 @@ public class H_MartProductSelection extends AppCompatActivity {
             recyclerViewH_MartPS.setAdapter(hMartPSRecyclerViewAdapter);
             return rootView;
         }
+
         @Override
-        public void onH_MartProductClicked(int clickedItemIndex, String data) {
-            MainActivity.setToast("Added to cart",getContext());
+        public void onH_MartProductAddButtonClicked(int clickedItemIndex, String name, int imageID, String quantStr, int quantInt, int price) {
+            DatabaseSqlClass.NeedyCartDbHelper cartDbHelper = new DatabaseSqlClass.NeedyCartDbHelper(getContext());
+            cartDbHelper.addItemToTable(name,imageID,quantStr,quantInt,price);
         }
     }
 

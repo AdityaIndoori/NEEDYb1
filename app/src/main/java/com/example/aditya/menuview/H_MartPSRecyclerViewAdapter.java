@@ -2,7 +2,6 @@ package com.example.aditya.menuview;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +30,7 @@ public class H_MartPSRecyclerViewAdapter extends RecyclerView.Adapter<H_MartPSRe
     final String TAG = "ADAPTER";
 
     public interface onH_MartProductClickListener{
-        void onH_MartProductClicked(int clickedItemIndex, String data);
+        void onH_MartProductAddButtonClicked(int clickedItemIndex, String name, int imageID, String quantStr, int quantInt, int price);
     }
     public H_MartPSRecyclerViewAdapter(int numberOfItems, ArrayList<String> namesArray, ArrayList<Integer> imagesArray, ArrayList<String[]> spinnerArray, ArrayList<Integer[]> spinnerArraydata, ArrayList<Integer> pricePerProduct, onH_MartProductClickListener productClickListener, Context context) {
         NumberOfItems = numberOfItems;
@@ -67,6 +66,9 @@ public class H_MartPSRecyclerViewAdapter extends RecyclerView.Adapter<H_MartPSRe
         TextView productName, productPrice;
         Spinner productQuantity;
         Button addButton;
+        String spinnerSelectedStr;
+        int quantity, priceOfSingleUnit;
+
         public ViewHolderClass(View itemView) {
             super(itemView);
             productImage = (ImageView) itemView.findViewById(R.id.imageViewH_MartPSRecyclerViewItem);
@@ -78,7 +80,13 @@ public class H_MartPSRecyclerViewAdapter extends RecyclerView.Adapter<H_MartPSRe
                 @Override
                 public void onClick(View v) {
                     final int position = getAdapterPosition();
-                    productClickListener.onH_MartProductClicked(position,productName.getText().toString());
+                    productClickListener.onH_MartProductAddButtonClicked(position,
+                            productName.getText().toString(),
+                            imagesArray.get(position),
+                            spinnerSelectedStr,
+                            quantity,
+                            priceOfSingleUnit
+                            );
                 }
             });
         }
@@ -93,8 +101,10 @@ public class H_MartPSRecyclerViewAdapter extends RecyclerView.Adapter<H_MartPSRe
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position2, long id) {
                     Integer[] quantities = spinnerArrayData.get(position);
-                    int quantity = quantities[parent.getSelectedItemPosition()];
-                    int totalPrice = quantity * pricePerProduct.get(position);
+                    quantity = quantities[parent.getSelectedItemPosition()];
+                    spinnerSelectedStr = spinnerArray.get(position)[position2];
+                    priceOfSingleUnit = pricePerProduct.get(position);
+                    int totalPrice = quantity * priceOfSingleUnit;
                     String str = "₹ " + totalPrice + "/-";
                     productPrice.setText("Price: " + str);
                 }

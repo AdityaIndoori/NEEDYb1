@@ -24,7 +24,7 @@ public final class DatabaseSqlClass {
     public static final String COLUMN_NAME_PRICE = "price";
 
     //SQL Queries for creating and deleting a table:
-    private static final String SQL_CREATE_ENTRIES_FRUITS_VEGETABLES =
+    private static final String SQL_CREATE_ENTRIES_FRUITS_VEGETABLES_PRODUCT_SELECTION =
             "CREATE TABLE " + FruitsVegetablesTable.TABLE_NAME_FRUITS_VEGETABLES + " (" +
                     FruitsVegetablesTable._ID + " INTEGER PRIMARY KEY," +
                     COLUMN_NAME_NAME + " TEXT," +
@@ -33,10 +33,10 @@ public final class DatabaseSqlClass {
                     COLUMN_NAME_QUANTITY_ARRAY_INTEGER + " TEXT,"+
                     COLUMN_NAME_PRICE + " INTEGER)";
 
-    private static final String SQL_DELETE_ENTRIES_FRUITS_VEGETABLES =
+    private static final String SQL_DELETE_ENTRIES_FRUITS_VEGETABLES_PRODUCT_SELECTION =
             "DROP TABLE IF EXISTS " + FruitsVegetablesTable.TABLE_NAME_FRUITS_VEGETABLES;
 
-    private static final String SQL_CREATE_ENTRIES_BREAD_DAIRY_EGGS =
+    private static final String SQL_CREATE_ENTRIES_BREAD_DAIRY_EGGS_PRODUCT_SELECTION =
             "CREATE TABLE " + BreadDairyAndEggs.TABLE_NAME_BREAD_DAIRY_EGGS + " (" +
                     FruitsVegetablesTable._ID + " INTEGER PRIMARY KEY," +
                     COLUMN_NAME_NAME + " TEXT," +
@@ -45,10 +45,10 @@ public final class DatabaseSqlClass {
                     COLUMN_NAME_QUANTITY_ARRAY_INTEGER + " TEXT,"+
                     COLUMN_NAME_PRICE + " INTEGER)";
 
-    private static final String SQL_DELETE_ENTRIES_BREAD_DAIRY_EGGS =
+    private static final String SQL_DELETE_ENTRIES_BREAD_DAIRY_EGGS_PRODUCT_SELECTION =
             "DROP TABLE IF EXISTS " + BreadDairyAndEggs.TABLE_NAME_BREAD_DAIRY_EGGS;
 
-    private static final String SQL_CREATE_ENTRIES_BEVERAGES=
+    private static final String SQL_CREATE_ENTRIES_BEVERAGES_PRODUCT_SELECTION =
             "CREATE TABLE " + Beverages.TABLE_NAME_BEVERAGES + " (" +
                     FruitsVegetablesTable._ID + " INTEGER PRIMARY KEY," +
                     COLUMN_NAME_NAME + " TEXT," +
@@ -57,10 +57,10 @@ public final class DatabaseSqlClass {
                     COLUMN_NAME_QUANTITY_ARRAY_INTEGER + " TEXT,"+
                     COLUMN_NAME_PRICE + " INTEGER)";
 
-    private static final String SQL_DELETE_ENTRIES_BEVERAGES =
+    private static final String SQL_DELETE_ENTRIES_BEVERAGES_PRODUCT_SELECTION =
             "DROP TABLE IF EXISTS " + Beverages.TABLE_NAME_BEVERAGES;
 
-    private static final String SQL_CREATE_ENTRIES_GROCERIES_STAPLES =
+    private static final String SQL_CREATE_ENTRIES_GROCERIES_STAPLES_PRODUCT_SELECTION =
             "CREATE TABLE " + GroceriesAndStaples.TABLE_NAME_GROCERIES_STAPLES + " (" +
                     FruitsVegetablesTable._ID + " INTEGER PRIMARY KEY," +
                     COLUMN_NAME_NAME + " TEXT," +
@@ -69,9 +69,23 @@ public final class DatabaseSqlClass {
                     COLUMN_NAME_QUANTITY_ARRAY_INTEGER + " TEXT,"+
                     COLUMN_NAME_PRICE + " INTEGER)";
 
-    private static final String SQL_DELETE_ENTRIES_GROCERIES_STAPLES =
+    private static final String SQL_DELETE_ENTRIES_GROCERIES_STAPLES_PRODUCT_SELECTION =
             "DROP TABLE IF EXISTS " + GroceriesAndStaples.TABLE_NAME_GROCERIES_STAPLES;
-    //Unique Column names/ Characteristics for each table:
+
+    //Cart:
+    private static final String SQL_CREATE_ENTRIES_CART =
+            "CREATE TABLE " + Cart.TABLE_NAME_CART + " (" +
+                    FruitsVegetablesTable._ID + " INTEGER PRIMARY KEY," +
+                    COLUMN_NAME_NAME + " TEXT," +
+                    COLUMN_NAME_IMAGE_ID + " INTEGER,"+
+                    COLUMN_NAME_QUANTITY_ARRAY_STRING + " TEXT,"+
+                    COLUMN_NAME_QUANTITY_ARRAY_INTEGER + " INTEGER,"+
+                    COLUMN_NAME_PRICE + " INTEGER)";
+
+    private static final String SQL_DELETE_ENTRIES_CART =
+            "DROP TABLE IF EXISTS " + Cart.TABLE_NAME_CART;
+
+//Unique Column names/ Characteristics for each table:
     public static class FruitsVegetablesTable implements BaseColumns{
         static final String TABLE_NAME_FRUITS_VEGETABLES = "fruitsVegetablesTable";
     }
@@ -83,6 +97,10 @@ public final class DatabaseSqlClass {
     }
     public static class Beverages implements BaseColumns{
         static final String TABLE_NAME_BEVERAGES = "beverages";
+    }
+
+    public static class Cart implements BaseColumns{
+        static final String TABLE_NAME_CART = "cart";
     }
 
     //Containing methods to create and perform actions on different tables of the databases
@@ -99,10 +117,10 @@ public final class DatabaseSqlClass {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            db.execSQL(SQL_CREATE_ENTRIES_BEVERAGES);
-            db.execSQL(SQL_CREATE_ENTRIES_BREAD_DAIRY_EGGS);
-            db.execSQL(SQL_CREATE_ENTRIES_GROCERIES_STAPLES);
-            db.execSQL(SQL_CREATE_ENTRIES_FRUITS_VEGETABLES);
+            db.execSQL(SQL_CREATE_ENTRIES_BEVERAGES_PRODUCT_SELECTION);
+            db.execSQL(SQL_CREATE_ENTRIES_BREAD_DAIRY_EGGS_PRODUCT_SELECTION);
+            db.execSQL(SQL_CREATE_ENTRIES_GROCERIES_STAPLES_PRODUCT_SELECTION);
+            db.execSQL(SQL_CREATE_ENTRIES_FRUITS_VEGETABLES_PRODUCT_SELECTION);
             AsyncTask.execute(new Runnable() {
                 @Override
                 public void run() {
@@ -135,14 +153,20 @@ public final class DatabaseSqlClass {
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             // This database is only a cache for online data, so its upgrade policy is
             // to simply to discard the data and start over
-            db.execSQL(SQL_DELETE_ENTRIES_GROCERIES_STAPLES);
-            db.execSQL(SQL_DELETE_ENTRIES_FRUITS_VEGETABLES);
-            db.execSQL(SQL_DELETE_ENTRIES_BREAD_DAIRY_EGGS);
-            db.execSQL(SQL_DELETE_ENTRIES_BEVERAGES);
+            db.execSQL(SQL_DELETE_ENTRIES_GROCERIES_STAPLES_PRODUCT_SELECTION);
+            db.execSQL(SQL_DELETE_ENTRIES_FRUITS_VEGETABLES_PRODUCT_SELECTION);
+            db.execSQL(SQL_DELETE_ENTRIES_BREAD_DAIRY_EGGS_PRODUCT_SELECTION);
+            db.execSQL(SQL_DELETE_ENTRIES_BEVERAGES_PRODUCT_SELECTION);
             onCreate(db);
         }
 
-        public boolean addItemToTable(String tableName, String itemName, int imageId, String[] quantityString, int[] quantityInt, int price){
+        public boolean addItemToTable(String tableName,
+                                      String itemName,
+                                      int imageId,
+                                      String[] quantityString,
+                                      int[] quantityInt,
+                                      int price)
+        {
             SQLiteDatabase sqLiteDatabase = getWritableDatabase();
             ContentValues contentValues = new ContentValues();
             contentValues.put(COLUMN_NAME_NAME,itemName);
@@ -233,7 +257,7 @@ public final class DatabaseSqlClass {
             return prices;
         }
 
-        int numberOfItems(String tableName){
+        int getNumberOfItems(String tableName){
             SQLiteDatabase db = getReadableDatabase();
             String selectQuery = "SELECT  * FROM " + tableName;
             Cursor cursor = db.rawQuery(selectQuery,null);
@@ -245,6 +269,138 @@ public final class DatabaseSqlClass {
             cursor.close();
             return itemNames.size();
         }
+    }
+
+    static class NeedyCartDbHelper extends SQLiteOpenHelper{
+        static final int DATABASE_VERSION = 3;
+        static final String DATABASE_NAME = "NeedyCart";
+        private Context context;
+
+        public NeedyCartDbHelper(Context context) {
+            super(context, DATABASE_NAME, null, DATABASE_VERSION);
+            this.context = context;
+        }
+
+        @Override
+        public void onCreate(SQLiteDatabase db) {
+            db.execSQL(SQL_CREATE_ENTRIES_CART);
+        }
+
+        @Override
+        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+            db.execSQL(SQL_DELETE_ENTRIES_CART);
+            onCreate(db);
+        }
+
+        public void addItemToTable(
+                                   String itemName,
+                                   int imageId,
+                                   String quantityString,
+                                   int quantityInt,
+                                   int price){
+            SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(COLUMN_NAME_NAME,itemName);
+            contentValues.put(COLUMN_NAME_IMAGE_ID,imageId);
+            contentValues.put(COLUMN_NAME_QUANTITY_ARRAY_STRING,quantityString);
+            contentValues.put(COLUMN_NAME_QUANTITY_ARRAY_INTEGER,quantityInt);
+            contentValues.put(COLUMN_NAME_PRICE,price);
+            sqLiteDatabase.insert(Cart.TABLE_NAME_CART,null,contentValues);
+            sqLiteDatabase.close();
+        }
+
+
+        ArrayList<String> getItemNamesFromTable(){
+            SQLiteDatabase db = getReadableDatabase();
+            String selectQuery = "SELECT  * FROM " + Cart.TABLE_NAME_CART;
+            Cursor cursor = db.rawQuery(selectQuery,null);
+            ArrayList<String> itemNames = new ArrayList<>();
+            while(cursor.moveToNext()) {
+                String name = cursor.getString(1);
+                itemNames.add(name);
+            }
+            cursor.close();
+            return itemNames;
+        }
+
+        ArrayList<Integer> getImageIDFromTable(){
+            SQLiteDatabase db = getReadableDatabase();
+            String selectQuery = "SELECT  * FROM " + Cart.TABLE_NAME_CART;
+            Cursor cursor = db.rawQuery(selectQuery,null);
+            ArrayList<Integer> imageIDs = new ArrayList<>();
+            while(cursor.moveToNext()) {
+                int imageID = cursor.getInt(2);
+                imageIDs.add(imageID);
+            }
+            cursor.close();
+            return imageIDs;
+        }
+
+        ArrayList<String> getQuantityStringArray(){
+            //example: a table has 2 elements onions and apples with 4th column being:
+            //Onion: "1 KG"
+            //Apples: "1 Dozen"
+            SQLiteDatabase db = getReadableDatabase();
+            String selectQuery = "SELECT  * FROM " + Cart.TABLE_NAME_CART;
+            Cursor cursor = db.rawQuery(selectQuery,null);
+            ArrayList<String> quantityString = new ArrayList<>();
+            while(cursor.moveToNext()) {
+                String quantityArrayString = cursor.getString(3);//String may now contain: "1 KG,2 KG,3KG","1 Dozen,2 Dozen"
+                quantityString.add(quantityArrayString);
+            }
+            cursor.close();
+            return quantityString;
+        }
+
+        ArrayList<Integer> getQuantityIntArray(){
+            //example: a table has 2 elements onions and apples with 4th column being:
+            //Onion: 1
+            //Apples: 2
+            SQLiteDatabase db = getReadableDatabase();
+            String selectQuery = "SELECT  * FROM " + Cart.TABLE_NAME_CART;
+            Cursor cursor = db.rawQuery(selectQuery,null);
+            ArrayList<Integer> quantityInt = new ArrayList<>();
+            while(cursor.moveToNext()) {
+                int quantityArrayInt = cursor.getInt(4);//String may now contain: "1,2,3"
+                quantityInt.add(quantityArrayInt);
+            }
+            cursor.close();
+            return quantityInt;
+        }
+
+        ArrayList<Integer> getPriceFromTable(){
+            SQLiteDatabase db = getReadableDatabase();
+            String selectQuery = "SELECT * FROM " + Cart.TABLE_NAME_CART;
+            Cursor cursor = db.rawQuery(selectQuery,null);
+            ArrayList<Integer> prices = new ArrayList<>();
+            while(cursor.moveToNext()) {
+                int price = cursor.getInt(5);
+                prices.add(price);
+            }
+            cursor.close();
+            return prices;
+        }
+
+        void deleteEntryAt(int position){
+            SQLiteDatabase database = this.getWritableDatabase();
+            database.execSQL("DELETE FROM " + Cart.TABLE_NAME_CART + " WHERE " + Cart._ID + "= '" + position + "'");
+            database.close();
+        }
+
+        int getNumberOfItems(){
+            SQLiteDatabase db = getReadableDatabase();
+            String selectQuery = "SELECT  * FROM " + Cart.TABLE_NAME_CART;
+            Cursor cursor = db.rawQuery(selectQuery,null);
+            ArrayList<String> itemNames = new ArrayList<>();
+            while(cursor.moveToNext()) {
+                String name = cursor.getString(1);
+                itemNames.add(name);
+            }
+            cursor.close();
+            return itemNames.size();
+            //return Integer.parseInt(Cart._COUNT);
+        }
+
     }
 
     private static String strSeparator = "__,__";
