@@ -1,7 +1,10 @@
 package com.example.aditya.menuview;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -16,8 +19,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.Animation;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.RelativeLayout;
+
+import static com.example.aditya.menuview.R.id.container;
 
 public class WOR_MainActivity extends AppCompatActivity {
 
@@ -43,14 +50,17 @@ public class WOR_MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setTitle("Wheels On Rent");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = (ViewPager) findViewById(container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +72,6 @@ public class WOR_MainActivity extends AppCompatActivity {
         });
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -82,14 +91,27 @@ public class WOR_MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
-        return super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     /**
      * A placeholder fragment containing a simple view.
      */
     public static class PlaceholderFragment extends Fragment {
+        private ImageView ivCarMain, ivCarBack, ivCarFront, ivCarSide,ivCarMain2;
+        private RelativeLayout relativeLayoutMain;
+        private int[]
+                imageIdMain={R.drawable.yaris_main,R.drawable.cruz_main},
+                imageIdFront={R.drawable.yaris_front,R.drawable.cruz_front},
+                imageIdSide={R.drawable.yaris_side,R.drawable.cruz_side},
+                imageIdBack={R.drawable.yaris_back,R.drawable.cruz_back};
+
         /**
          * The fragment argument representing the section number for this
          * fragment.
@@ -114,15 +136,60 @@ public class WOR_MainActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            int pageNumber = getArguments().getInt(ARG_SECTION_NUMBER);
+            final int pageNumber = getArguments().getInt(ARG_SECTION_NUMBER);
             View rootView = inflater.inflate(R.layout.fragment_wor__main, container, false);
-            ImageView ivCarMain, ivCarTop, ivCarFront, ivCarSide;
             ivCarFront = (ImageView) rootView.findViewById(R.id.iv_carFront);
             ivCarMain = (ImageView) rootView.findViewById(R.id.iv_carMain);
             ivCarSide = (ImageView) rootView.findViewById(R.id.iv_carSide);
-            ivCarTop = (ImageView) rootView.findViewById(R.id.iv_carTop);
+            ivCarBack = (ImageView) rootView.findViewById(R.id.iv_carTop);
+            ivCarMain2 = (ImageView) rootView.findViewById(R.id.iv_carMain2);
+            relativeLayoutMain = (RelativeLayout) rootView.findViewById(R.id.rl_wor_main);
+
+            ivCarMain.setImageResource(imageIdMain[pageNumber]);
+            ivCarFront.setImageResource(imageIdFront[pageNumber]);
+            ivCarSide.setImageResource(imageIdSide[pageNumber]);
+            ivCarBack.setImageResource(imageIdBack[pageNumber]);
+            ivCarMain2.setImageResource(imageIdMain[pageNumber]);
+
+            ivCarMain2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ivCarMain.setImageResource(imageIdMain[pageNumber]);
+                }
+            });
+
+            ivCarBack.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ivCarMain.setImageResource(imageIdBack[pageNumber]);
+                }
+            });
+
+            ivCarSide.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ivCarMain.setImageResource(imageIdSide[pageNumber]);
+                }
+            });
+
+            ivCarFront.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ivCarMain.setImageResource(imageIdFront[pageNumber]);
+                }
+            });
+
+            relativeLayoutMain.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(getContext()
+                            .getApplicationContext(),WOR_CarDetailsActivity.class)
+                            .putExtra("position",pageNumber));
+                }
+            });
             return rootView;
         }
+
     }
 
     /**
@@ -139,26 +206,25 @@ public class WOR_MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            return PlaceholderFragment.newInstance(position);
         }
 
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 2;
         }
-
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SECTION 1";
+                    return "Toyota Yaris iA";
                 case 1:
-                    return "SECTION 2";
-                case 2:
-                    return "SECTION 3";
+                    return "Chevrolet Cruze";
+
             }
             return null;
         }
     }
+
 }

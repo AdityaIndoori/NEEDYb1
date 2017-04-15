@@ -144,11 +144,13 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_myOrders) {
-            setToast("Clicked Orders Menu", getApplicationContext());
+            startActivity(new Intent(getApplicationContext(), H_MartCartActivity.class));
 
         } else if (id == R.id.nav_wishList) {
             setToast("Clicked WishList Menu", getApplicationContext());
 
+        } else if (id==R.id.nav_couponsList){
+            setToast("Clicked on Coupons",getApplicationContext());
         } else if (id == R.id.nav_invite) {
             setToast("Clicked Invite Menu", getApplicationContext());
 
@@ -181,7 +183,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void clickedrelativeLayoutC_BayBee() {
-        setToast("C-Baybee", getApplicationContext());
+        startActivity(new Intent(getApplicationContext(),CBayBee_LoginActivity.class));
     }
 
     private void clickedrelativeLayoutWheelsOnRent() {

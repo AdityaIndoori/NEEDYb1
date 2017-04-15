@@ -12,6 +12,11 @@
             android:id="@+id/nav_wishList"
             android:title="Wish List"
             android:icon="@drawable/ic_list_white_36dp"/>
+
+        <item
+            android:id="@+id/nav_couponsList"
+            android:title="Coupons"
+            android:icon="@drawable/ic_redeem_black_36dp"/>
     </group>
 
     <item android:title="Communicate">

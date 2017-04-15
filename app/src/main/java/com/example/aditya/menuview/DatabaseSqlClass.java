@@ -75,7 +75,7 @@ public final class DatabaseSqlClass {
     //Cart:
     private static final String SQL_CREATE_ENTRIES_CART =
             "CREATE TABLE " + Cart.TABLE_NAME_CART + " (" +
-                    FruitsVegetablesTable._ID + " INTEGER PRIMARY KEY," +
+                    Cart._ID + " INTEGER PRIMARY KEY," +
                     COLUMN_NAME_NAME + " TEXT," +
                     COLUMN_NAME_IMAGE_ID + " INTEGER,"+
                     COLUMN_NAME_QUANTITY_ARRAY_STRING + " TEXT,"+
@@ -106,7 +106,7 @@ public final class DatabaseSqlClass {
     //Containing methods to create and perform actions on different tables of the databases
     static class NeedyProductDbHelper extends SQLiteOpenHelper{
         // If you change the database schema, you must increment the database version.
-        static final int DATABASE_VERSION = 1;
+        static final int DATABASE_VERSION = 3;
         static final String DATABASE_NAME = "NeedyProducts";
         private Context context;
 
@@ -272,7 +272,7 @@ public final class DatabaseSqlClass {
     }
 
     static class NeedyCartDbHelper extends SQLiteOpenHelper{
-        static final int DATABASE_VERSION = 3;
+        static final int DATABASE_VERSION = 5;
         static final String DATABASE_NAME = "NeedyCart";
         private Context context;
 
@@ -379,6 +379,19 @@ public final class DatabaseSqlClass {
             }
             cursor.close();
             return prices;
+        }
+
+        ArrayList<Integer> getUniqueIdFromTable(){
+            SQLiteDatabase db = getReadableDatabase();
+            String selectQuery = "SELECT * FROM " + Cart.TABLE_NAME_CART;
+            Cursor cursor = db.rawQuery(selectQuery,null);
+            ArrayList<Integer> ids = new ArrayList<>();
+            while(cursor.moveToNext()) {
+                int id = cursor.getInt(0);
+                ids.add(id);
+            }
+            cursor.close();
+            return ids;
         }
 
         void deleteEntryAt(int position){

@@ -172,6 +172,7 @@ public class H_MartProductSelection extends AppCompatActivity {
         public void onH_MartProductAddButtonClicked(int clickedItemIndex, String name, int imageID, String quantStr, int quantInt, int price) {
             DatabaseSqlClass.NeedyCartDbHelper cartDbHelper = new DatabaseSqlClass.NeedyCartDbHelper(getContext());
             cartDbHelper.addItemToTable(name,imageID,quantStr,quantInt,price);
+            MainActivity.setToast("Added to Cart", getContext());
         }
     }
 

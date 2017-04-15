@@ -59,7 +59,7 @@
                 android:layout_margin="8dp"
                 android:text="Payment Options:"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
-            <RadioButton
+            <CheckBox
                 android:id="@+id/radioboxWallet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

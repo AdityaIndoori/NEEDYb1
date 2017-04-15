@@ -23,9 +23,11 @@ public class H_MartCartRecyclerViewAdapter extends RecyclerView.Adapter<H_MartCa
     private final ArrayList<Integer> quantityArrayInt;
     private final ArrayList<Integer> pricePerProduct;
     private final H_MartCartItemClickeListener h_martCartItemClickeListener;
+    private final ArrayList<Integer> uniqueIds;
     final Context context;
 
-    public H_MartCartRecyclerViewAdapter(int numberOfItems, ArrayList<String> namesArray, ArrayList<Integer> imagesArray, ArrayList<String> quantityArrayString, ArrayList<Integer> quantityArrayInt, ArrayList<Integer> pricePerProduct, H_MartCartItemClickeListener h_martCartItemClickeListener, Context context) {
+    public H_MartCartRecyclerViewAdapter(int numberOfItems,ArrayList<Integer> uniqueIds, ArrayList<String> namesArray, ArrayList<Integer> imagesArray, ArrayList<String> quantityArrayString, ArrayList<Integer> quantityArrayInt, ArrayList<Integer> pricePerProduct, H_MartCartItemClickeListener h_martCartItemClickeListener, Context context) {
+        this.uniqueIds = uniqueIds;
         NumberOfItems = numberOfItems;
         this.namesArray = namesArray;
         this.imagesArray = imagesArray;
@@ -38,7 +40,7 @@ public class H_MartCartRecyclerViewAdapter extends RecyclerView.Adapter<H_MartCa
 
     public interface H_MartCartItemClickeListener {
         void onH_MartCartItemClicked(int ViewId, String data);
-        void onH_MartCartItemDeleted(int position);
+        void onH_MartCartItemDeleted(int uniqueId);
     }
     @Override
     public CartViewHolderClass onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -57,6 +59,7 @@ public class H_MartCartRecyclerViewAdapter extends RecyclerView.Adapter<H_MartCa
     }
 
     public void deleteItem(int position){
+        uniqueIds.remove(position);
         namesArray.remove(position);
         imagesArray.remove(position);
         quantityArrayString.remove(position);
@@ -89,7 +92,7 @@ public class H_MartCartRecyclerViewAdapter extends RecyclerView.Adapter<H_MartCa
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    h_martCartItemClickeListener.onH_MartCartItemDeleted(getAdapterPosition()+1);
+                    h_martCartItemClickeListener.onH_MartCartItemDeleted(uniqueIds.get(getAdapterPosition()));
                     deleteItem(getAdapterPosition());
                     h_martCartItemClickeListener.onH_MartCartItemClicked(deleteButton.getId(),deleteButton.getText().toString());
                 }

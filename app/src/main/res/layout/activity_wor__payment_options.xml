@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.aditya.menuview.WOR_PaymentOptions">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#ffffff"
+        android:layout_margin="8dp"
+        android:id="@+id/wor_linearLayoutBill"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Billing:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/wor_textViewPaymentDetailsText"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/wor_textViewPaymentDetailsNumbers"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/wor_linearLayoutBill"
+        android:background="#ffffff"
+        android:layout_alignLeft="@id/wor_linearLayoutBill"
+        android:layout_alignStart="@id/wor_linearLayoutBill"
+        android:layout_alignEnd="@id/wor_linearLayoutBill"
+        android:layout_alignRight="@id/wor_linearLayoutBill">
+        <TextView
+            android:id="@+id/wor_textPaymentTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Payment Options:"
+            android:layout_alignParentTop="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+        <CheckBox
+            android:id="@+id/wor_radioboxWallet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Use Wallet for Payment"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_alignStart="@id/wor_textPaymentTitle"
+            android:layout_alignLeft="@id/wor_textPaymentTitle"
+            android:layout_below="@id/wor_textPaymentTitle"/>
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/wor_radioboxWallet"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="2dp"
+            android:layout_alignStart="@id/wor_textPaymentTitle"
+            android:layout_alignLeft="@id/wor_textPaymentTitle">
+
+            <RadioButton
+                android:id="@+id/wor_radioCashOnDelivery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cash On Delivery"
+                android:layout_marginTop="8dp"/>
+            <RadioButton
+                android:id="@+id/wor_radioPayUMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PayUMoney Wallet"
+                android:layout_marginTop="8dp"/>
+            <RadioButton
+                android:id="@+id/wor_radioPayTM"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pay with PayTM Wallet"
+                android:layout_marginTop="8dp"/>
+        </RadioGroup>
+    </RelativeLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="8dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="Proceed"
+        android:textColor="#ffffff"/>
+</RelativeLayout>

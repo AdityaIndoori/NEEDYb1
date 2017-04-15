@@ -14,11 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".SplashScreen"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -28,9 +23,14 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".EmergencyLoginActivity"
             android:label="@string/title_activity_emergency_login"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.aditya.menuview.MainActivity" />
@@ -49,7 +49,7 @@
             android:name=".H_MartProductSelection"
             android:label="@string/title_activity_h_mart_product_selection"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.aditya.menuview.H_MartMainActivity" />
@@ -70,16 +70,47 @@
         </activity>
         <activity
             android:name=".H_MartPaymentOptions"
-        android:screenOrientation="portrait">
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.aditya.menuview.H_MartDeliveryOptions" />
         </activity>
         <activity
+            android:name=".CBayBee_LoginActivity"
+            android:label="@string/title_activity_cbay_bee__login"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.aditya.menuview.MainActivity" />
+        </activity>
+        <activity
             android:name=".WOR_MainActivity"
             android:label="@string/title_activity_wor__main"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.aditya.menuview.MainActivity" />
+        </activity>
+        <activity
+            android:name=".WOR_CarDetailsActivity"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.aditya.menuview.WOR_MainActivity" />
+        </activity>
+        <activity android:name=".WOR_CartActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.aditya.menuview.WOR_CarDetailsActivity" />
+        </activity>
+        <activity android:name=".WOR_PaymentOptions"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.aditya.menuview.WOR_CartActivity" />
+        </activity>
     </application>
 
 </manifest>

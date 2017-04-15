@@ -25,6 +25,8 @@ public class H_MartCartActivity extends AppCompatActivity implements H_MartCartR
     private LinearLayoutManager linearLayoutManager;
     private H_MartCartRecyclerViewAdapter cartRecyclerViewAdapter;
     private Button confirmButton;
+    private ArrayList<Integer> uniqueIds;
+    private int size;
     private ArrayList<String> namesArray; /*= new ArrayList<String>(Arrays.asList("Onions","Milk","Tuborg","Flour"));*/
     private ArrayList<Integer> imagesArray; /*= new ArrayList<Integer>(Arrays.asList(R.drawable.onion,R.drawable.milk,R.drawable.tuborg,R.drawable.flour));*/
     private ArrayList<String> quantityArrayString; /*= new ArrayList<>(Arrays.asList("2 KG","4 CARTONS","3 BOTTLES","5 KG"));*/
@@ -39,14 +41,15 @@ public class H_MartCartActivity extends AppCompatActivity implements H_MartCartR
         recyclerViewCartItems = (RecyclerView) findViewById(R.id.RecyclerViewHMartCartItems);
         confirmButton = (Button) findViewById(R.id.buttonH_MartCartConfirm);
         DatabaseSqlClass.NeedyCartDbHelper cartDbHelper = new DatabaseSqlClass.NeedyCartDbHelper(getApplicationContext());
-        int size = cartDbHelper.getNumberOfItems();
+        uniqueIds = cartDbHelper.getUniqueIdFromTable();
+        size = cartDbHelper.getNumberOfItems();
         namesArray = cartDbHelper.getItemNamesFromTable();
         imagesArray = cartDbHelper.getImageIDFromTable();
         quantityArrayString = cartDbHelper.getQuantityStringArray();
         quantityArrayInt = cartDbHelper.getQuantityIntArray();
         pricePerProduct = cartDbHelper.getPriceFromTable();
         linearLayoutManager = new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false);
-        cartRecyclerViewAdapter = new H_MartCartRecyclerViewAdapter(size,namesArray,imagesArray,quantityArrayString,quantityArrayInt,pricePerProduct,this,getApplicationContext());
+        cartRecyclerViewAdapter = new H_MartCartRecyclerViewAdapter(size,uniqueIds,namesArray,imagesArray,quantityArrayString,quantityArrayInt,pricePerProduct,this,getApplicationContext());
         recyclerViewCartItems.setLayoutManager(linearLayoutManager);
         recyclerViewCartItems.setAdapter(cartRecyclerViewAdapter);
         int totalBill = cartRecyclerViewAdapter.totalBill();

@@ -43,7 +43,6 @@ public class H_MartPSRecyclerViewAdapter extends RecyclerView.Adapter<H_MartPSRe
         this.context = context;
     }
 
-
     @Override
     public ViewHolderClass onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
